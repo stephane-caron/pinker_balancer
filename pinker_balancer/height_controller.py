@@ -101,11 +101,16 @@ class HeightController:
     """Compute leg inverse kinematics.
 
     Attributes:
-        knees_forward: Set to True to bend knees forward rather than backward.
+        knee_side: Either "forward" or "backward", the side knees bend to.
         max_crouch_height: Maximum distance along the vertical axis that the
             robot goes down while crouching, in [m].
+        max_crouch_velocity: Maximum vertical velocity in [m] / [s].
+        max_height_difference: Maximum height difference between the two
+            wheel contact points, in [m].
         max_init_joint_velocity: Maximum joint velocity during the initial
             phase, in [rad] / [s].
+        max_lean_velocity: Maximum leaning (to the side) velocity, in [m] /
+            [s].
         robot: Robot model used for inverse kinematics.
         target_position_wheel_in_rest: Target position in the rest frame.
         tasks: Dictionary of inverse kinematics tasks.
@@ -113,7 +118,7 @@ class HeightController:
     """
 
     height_difference: float = 0.0
-    knees_forward: bool
+    knee_side: str
     max_crouch_height: float
     max_crouch_velocity: float
     max_height_difference: float
@@ -121,7 +126,7 @@ class HeightController:
     max_lean_velocity: float
     robot: RobotWrapper
     target_height: float = 0.0
-    target_position_wheel_in_rest: dict[NDArray[float]]
+    target_position_wheel_in_rest: dict[str, NDArray[float]]
     tasks: dict
     transform_rest_to_world: dict
 
@@ -252,7 +257,6 @@ class HeightController:
         self.__initialized = False
         self.crouch_slider = crouch_slider
         self.ik_configuration = neutral_configuration
-        self.jump_playback = None
         self.knee_side = "forward" if knees_forward else "backward"
         self.last_velocity = np.zeros(robot.nv)
         self.max_crouch_height = max_crouch_height

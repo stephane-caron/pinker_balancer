@@ -24,7 +24,7 @@ class WheelController:
         turning_probability: Probability that the user wants to turn based on
             the joystick axis value.
         turning_decision_time: Minimum duration in [s] for the turning
-            probability to switch from zero to one and converesly.
+            probability to switch from zero to one and conversely.
         wheel_radius: Wheel radius in [m].
     """
 
@@ -56,7 +56,7 @@ class WheelController:
             turning_deadband: Joystick axis value between 0.0 and 1.0 below
                 which legs stiffen but the turning motion doesn't start.
             turning_decision_time: Minimum duration in [s] for the turning
-                probability to switch from zero to one and converesly.
+                probability to switch from zero to one and conversely.
             wheel_radius: Wheel radius in [m].
         """
         assert 0.0 <= turning_deadband <= 1.0
@@ -87,14 +87,14 @@ class WheelController:
         return log_dict
 
     def cycle(self, observation: dict, dt: float) -> dict:
-        """Compute a new ground velocity.
+        """Compute wheel velocity targets for a new cycle.
 
         Args:
             observation: Latest observation.
             dt: Time in [s] until next cycle.
 
         Returns:
-            New ground velocity, in [m] / [s].
+            Dictionary with velocity targets for both wheel servos.
         """
         self.update_target_ground_velocity(observation, dt)
         self.update_target_yaw_velocity(observation, dt)

@@ -3,6 +3,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+"""Run the Pinker balancer agent on a spine."""
+
 import argparse
 import traceback
 
