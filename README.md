@@ -52,7 +52,7 @@ user@upkie:pinker_balancer$ pixi run agent
 
 Once the agent is running, you can direct your Upkie using the game controller 🎮
 
-- **Left joystick:** go forward right backward
+- **Left joystick:** go forward or backward
 - **Right joystick:** turn left or right
 - **Directional pad:** down to crouch, up to stand up
 - **Right button:** (B on an Xbox controller, red circle on a PS4 controller) emergency stop 🚨 all motors will turn off
