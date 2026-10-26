@@ -15,8 +15,7 @@ from pinker.kinematics.so3 import quaternion_wxyz
 from pinker.tasks import FrameTask, PostureTask
 from upkie.logging import logger
 from upkie.utils.clamp import clamp
-
-from .utils import abs_bounded_derivative_filter
+from upkie.utils.filters import abs_bounded_derivative_filter
 
 
 def observe_configuration(
